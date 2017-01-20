@@ -1,0 +1,58 @@
+plugins {
+    id 'groovy'
+    id 'java-gradle-plugin'
+    id 'codenarc'
+    id 'com.gradle.plugin-publish' version '0.9.6'
+}
+
+apply plugin: 'com.energizedwork.idea-base'
+apply plugin: 'com.energizedwork.idea-junit'
+apply plugin: 'com.energizedwork.asl2'
+
+apply from: 'gradle/dependencyRules.gradle'
+apply from: 'gradle/idea/idea.gradle'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+}
+
+dependencies {
+    codenarc('org.codenarc:CodeNarc:0.26.0') {
+        exclude module: 'GMetrics'
+    }
+
+    compile "gradle.plugin.com.energizedwork:idea-gradle-plugins:1.2"
+
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4-rc-3'
+    testCompile 'org.xmlunit:xmlunit-core:2.3.0'
+}
+
+version = '1.0'
+
+codenarc.configFile = rootProject.file('gradle/codenarc/rulesets.groovy')
+
+gradlePlugin {
+    plugins {
+        asl2Plugin {
+            id = 'com.energizedwork.asl2'
+            implementationClass = 'com.energizedwork.gradle.Asl2Plugin'
+        }
+    }
+}
+
+pluginBundle {
+    website = 'https://github.com/energizedwork/asl2-gradle-plugin/blob/master/README.md'
+    vcsUrl = 'https://github.com/energizedwork/asl2-gradle-plugin'
+    description = 'A Gradle plugin for setting up projectes released under Apache Licence, Version 2.0'
+    tags = ['licence', 'oss', 'Apache Licence', 'idea', 'IntelliJ']
+
+    plugins {
+        asl2Plugin {
+            id = 'com.energizedwork.asl2'
+            displayName = 'ASL2 plugin'
+        }
+    }
+}

@@ -1,0 +1,7 @@
+ideaJunit {
+    tasks = ['classes', 'pluginUnderTestMetadata']
+}
+
+ideaProjectComponents {
+    file "gradle/idea/codeStyle.xml"
+}
