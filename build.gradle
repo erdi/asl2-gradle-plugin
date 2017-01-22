@@ -30,7 +30,7 @@ dependencies {
     testCompile 'org.xmlunit:xmlunit-core:2.3.0'
 }
 
-version = '1.0'
+version = '1.1'
 
 codenarc.configFile = rootProject.file('gradle/codenarc/rulesets.groovy')
 
