@@ -38,6 +38,8 @@ class Asl2Plugin implements Plugin<Project> {
         def plugins = project.plugins
         plugins.withType(IdeaPlugin) {
             plugins.apply(IdeaProjectComponentsPlugin)
+        }
+        plugins.withType(IdeaProjectComponentsPlugin) {
             project.extensions.configure(IdeaProjectComponentsPluginExtension) { IdeaProjectComponentsPluginExtension extension ->
                 extension.stream(getClass().getResourceAsStream(IDEA_COPYRIGHT_HEADERS_CONFIG_RESOURCE_NAME))
             }

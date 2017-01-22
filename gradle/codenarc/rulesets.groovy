@@ -65,7 +65,7 @@ ruleset {
     ruleset("rulesets/logging.xml")
     ruleset("rulesets/naming.xml") {
         MethodName {
-            regex = /[a-z]\w*( \w+)*/
+            regex = /[a-z][\w-]*( [\w-]+)*/
         }
         FactoryMethodName {
             enabled = false

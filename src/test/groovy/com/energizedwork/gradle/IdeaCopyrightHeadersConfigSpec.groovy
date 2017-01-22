@@ -58,6 +58,19 @@ class IdeaCopyrightHeadersConfigSpec extends PluginSpec {
         testTaskName = 'hasIdeaPlugin'
     }
 
+    def "idea-project-components plugin can be applied after applying asl2 plugin"() {
+        given:
+        buildScript << '''
+            apply plugin: 'com.energizedwork.idea-project-components'
+        '''
+
+        when:
+        runIdeaProjectTask()
+
+        then:
+        noExceptionThrown()
+    }
+
     private Input.Builder nodeInput(Node node) {
         Input.fromString(XmlUtil.serialize(node))
     }
